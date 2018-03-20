@@ -100,8 +100,11 @@ public class ExperimentController{
 	}
 
 	public void saveResults() throws FileNotFoundException { 
-		
-		PrintStream out = new PrintStream(new File("experimentalResults", "allResults.txt"));
+		File z = new File("experimentalResults", "allResults.txt");
+		PrintStream out = new PrintStream(z);
+		if (! z.exists()){
+	        z.mkdirs();
+		}
 		out.print("Size");
 		for (StrategiesTimeCollection<Integer> trc : resultsPerStrategy) 
 			out.print("\t" + trc.getStrategyName()); 
